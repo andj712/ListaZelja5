@@ -1,0 +1,61 @@
+<body style="background-color:#F8C8DC">
+
+<center>
+
+<h1>Листа жеља</h1>
+
+<b> Креирајте Вашу листу жеља овде</b>
+
+<form action="/save" method="POST">
+	
+	<label for="username">Корисничко име</label>
+	<input name="username" id="username" required><br><br>
+
+	<label for="place">Омиљено место</label>
+	<input name="place" id="place" required><br><br>
+
+	<label for="food">Омиљена храна</label>
+	<input name="food" id="food" required><br><br>
+
+	<input type="submit" value="Сачувај">
+
+</form>
+
+<b>Унесите корисничко име и попуните листу</b>
+<form action="/get" method="POST">
+	<label for="username">Корисничко име</label>
+	<input name="username" id="username" required><br><br>
+	<input type="submit" value="Прикажи">
+</form>
+
+{% if get %}
+<font color="blue">Листа жеља за <b>{{username}}</b> je место <b>{{place}}</b> и храна <b>{{food}}</b></font>
+<small>{{msg}}</small>
+{% endif %}
+
+{% if no_record %}
+<font color="red">{{msg}}</font>
+{% endif %}
+
+{% if user_exists %}
+<font color="red">Корисник <b>{{username}}</b> већ постоји са листом жеља <b>{{place}}</b> и <b>{{food}}</b></font>
+<small>{{msg}}</small>
+{% endif %}
+
+{% if saved %}
+<font color="green"> Успешно сачувани подаци за <b>{{username}}</b> са листом жеља <b>{{place}}</b> и <b>{{food}}</b>!!!</font>
+{% endif %}
+
+</center>
+<br>
+<a href="/keys">Кључеви</a>
+{% if keys %}
+	<h3> Кључеви </h3>
+	<small>(Из базе)</small>
+	<ul>
+	{% for username in usernames %}
+		<li>{{username}}</li>
+	{% endfor %}
+	</ul>
+{% endif %}
+</body>
