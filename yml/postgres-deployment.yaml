@@ -37,8 +37,6 @@ spec:
                   key: PGPASSWORD
         - name: postgres-sidecar
           image: postgres:12-alpine
-          ports:
-            - containerPort: 5432
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data-sidecar
